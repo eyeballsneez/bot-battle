@@ -2,12 +2,12 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 public abstract class guy extends actor {
-    private double direction;
+    protected double direction;
     private double speed;
     private double maxSpeed;
     private double hp;
 
-    public guy(int startx, int starty, int startMaxSpeed, int maxHP, ArrayList<actor> allies, ArrayList<actor> enemies) {
+    public guy(double startx, double starty, double startMaxSpeed, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies) {
         super(allies, enemies);
         x = startx;
         y = starty;

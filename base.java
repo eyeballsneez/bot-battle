@@ -19,6 +19,15 @@ public class base extends actor {
         }
     }
 
+    public void spawnInfantryGuy(){
+        if (money >= 50)
+        {
+            money -= 50;
+            allies.add(new infantryGuy(x, y, allies, enemies));
+        }
+
+    }
+
     public void tick() {
         money += income;
     }
