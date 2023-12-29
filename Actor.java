@@ -1,4 +1,4 @@
-public class actor {
+public class Actor {
     private int x;
     private int y;
 
