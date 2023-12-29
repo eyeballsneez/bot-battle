@@ -7,10 +7,13 @@ public abstract class actor {
     ArrayList<actor> allies;
     ArrayList<actor> enemies;
 
-    public actor(ArrayList<actor> allies, ArrayList<actor> enemies)
+    Game game;
+
+    public actor(ArrayList<actor> allies, ArrayList<actor> enemies, Game game)
     {
         this.allies = allies;
         this.enemies = enemies;
+        this.game = game;
     }
 
     public double getX() {

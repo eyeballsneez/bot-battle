@@ -8,8 +8,8 @@ public abstract class guy extends actor {
     private double hp;
     private double maxHp;
 
-    public guy(double startx, double starty, double startMaxSpeed, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies) {
-        super(allies, enemies);
+    public guy(double startx, double starty, double startMaxSpeed, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies, Game game) {
+        super(allies, enemies, game);
         x = startx;
         y = starty;
         maxSpeed = startMaxSpeed;
@@ -25,15 +25,13 @@ public abstract class guy extends actor {
     public void damage(double dmg){
         hp -= dmg;
         if (hp <= 0) {
-            allies.remove(this);
+            game.remove(this);
         }
     }
 
     @Override
     public void tick(){
-        if (hp <= 0){
-            allies.remove(this);
-        }
+
     }
 
     public void setDirection(double direction) {

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class projectile extends actor {
     private double speed, direction, dmg, size;
-    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, ArrayList<actor> allies, ArrayList<actor> enemies){
-        super(allies, enemies);
+    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, ArrayList<actor> allies, ArrayList<actor> enemies, Game game){
+        super(allies, enemies, game);
         x = startx;
         y = starty;
         speed = initspeed;
@@ -23,9 +23,9 @@ public class projectile extends actor {
 
                 double dist = Math.sqrt((y - enemy.getY()) * (y - enemy.getY()) + (x - enemy.getX()) * (x - enemy.getX()));
 
-                if (dist < size){
+                if (dist < size) {
                     enemyGuy.damage(dmg);
-                    allies.remove(this);
+                    game.remove(this);
                 }
             }
         }

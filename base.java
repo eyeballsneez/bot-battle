@@ -5,8 +5,8 @@ public class base extends actor {
     private int money;
     private int income;
 
-    public base(int startingMoney, int startingIncome, double xpos, double ypos, ArrayList<actor> allies, ArrayList<actor> enemies) {
-        super(allies, enemies);
+    public base(int startingMoney, int startingIncome, double xpos, double ypos, ArrayList<actor> allies, ArrayList<actor> enemies, Game game) {
+        super(allies, enemies, game);
         money = startingMoney;
         income = startingIncome;
         x = xpos;
@@ -24,7 +24,7 @@ public class base extends actor {
         if (money >= 50)
         {
             money -= 50;
-            infantryGuy infantry = new infantryGuy(x, y, allies, enemies);
+            infantryGuy infantry = new infantryGuy(x, y, allies, enemies, game);
             allies.add(infantry);
         }
 
