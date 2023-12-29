@@ -7,7 +7,8 @@ public abstract class guy extends actor {
     private double maxSpeed;
     private double hp;
 
-    public guy(int startx, int starty, int startMaxSpeed, int maxHP) {
+    public guy(int startx, int starty, int startMaxSpeed, int maxHP, ArrayList<actor> allies, ArrayList<actor> enemies) {
+        super(allies, enemies);
         x = startx;
         y = starty;
         maxSpeed = startMaxSpeed;

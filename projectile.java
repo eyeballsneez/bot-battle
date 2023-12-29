@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class projectile extends actor{
     private double x, y, speed, direction, dmg, size;
-    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size){
+    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, ArrayList<actor> allies, ArrayList<actor> enemies){
+        super(allies, enemies);
         x = startx;
         y = starty;
         speed = initspeed;
@@ -11,7 +12,7 @@ public class projectile extends actor{
         this.size = size;
     }
 
-    public void tick(ArrayList<actor> allies, ArrayList<actor> enemies) {
+    public void tick() {
         this.x += Math.sin(direction) * speed;
         this.y += Math.cos(direction) * speed;
 

@@ -4,8 +4,14 @@ abstract class actor {
 
     protected double x;
     protected double y;
+    ArrayList<actor> allies;
+    ArrayList<actor> enemies;
 
-
+    public actor(ArrayList<actor> allies, ArrayList<actor> enemies)
+    {
+        this.allies = allies;
+        this.enemies = enemies;
+    }
 
     public double getX() {
         return x;
@@ -14,7 +20,7 @@ abstract class actor {
         return y;
     }
 
-    public abstract void tick(ArrayList<actor> allies, ArrayList<actor> enemies);
+    public abstract void tick();
 
     public abstract void draw();
 }

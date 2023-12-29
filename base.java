@@ -4,7 +4,8 @@ public class base extends actor {
     private int money;
     private int income;
 
-    public base(int startingMoney, int startingIncome, double xpos, double ypos) {
+    public base(int startingMoney, int startingIncome, double xpos, double ypos, ArrayList<actor> allies, ArrayList<actor> enemies) {
+        super(allies, enemies);
         money = startingMoney;
         income = startingIncome;
         x = xpos;
@@ -18,7 +19,7 @@ public class base extends actor {
         }
     }
 
-    public void tick(ArrayList<actor> allies, ArrayList<actor> enemies) {
+    public void tick() {
         money += income;
     }
 
