@@ -14,7 +14,7 @@ public abstract class guy extends actor {
         hp = maxHP;
     }
 
-    public void move() {
+    protected void move() {
         x += Math.sin(direction) * speed;
         y += Math.cos(direction) * speed;
     }

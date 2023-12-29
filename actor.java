@@ -5,6 +5,8 @@ abstract class actor {
     protected double x;
     protected double y;
 
+
+
     public double getX() {
         return x;
     }
