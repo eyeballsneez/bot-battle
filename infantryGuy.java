@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class infantryGuy extends guy {
     int gunCooldown;
-    int gunMaxCooldown = 10;
+    static final int gunMaxCooldown = 1;
     public infantryGuy(double startx, double starty, ArrayList<actor> allies, ArrayList<actor> enemies){
         super(startx, starty, 5, 5, allies, enemies);
     }

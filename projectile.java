@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class projectile extends actor{
+public class projectile extends actor {
     private double speed, direction, dmg, size;
     public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, ArrayList<actor> allies, ArrayList<actor> enemies){
         super(allies, enemies);
@@ -32,5 +32,8 @@ public class projectile extends actor{
 
     public double getDirection() {
         return direction;
+    }
+    public double getSize() {
+        return size;
     }
 }

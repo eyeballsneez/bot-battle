@@ -10,12 +10,13 @@ public class Game {
     }
 
     public void tick() {
-        for (actor actor : team1Actors) {
-            actor.tick();
+        // not using enhanced for-loop to prevent concurrent modification error
+        for (int i = 0; i < team1Actors.size(); i++) {
+            team1Actors.get(i).tick();
         }
 
-        for (actor actor : team2Actors) {
-            actor.tick();
+        for (int i = 0; i < team2Actors.size(); i++) {
+            team2Actors.get(i).tick();
         }
     }
 }

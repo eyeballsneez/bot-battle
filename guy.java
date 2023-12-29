@@ -6,6 +6,7 @@ public abstract class guy extends actor {
     private double speed;
     private double maxSpeed;
     private double hp;
+    private double maxHp;
 
     public guy(double startx, double starty, double startMaxSpeed, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies) {
         super(allies, enemies);
@@ -13,6 +14,7 @@ public abstract class guy extends actor {
         y = starty;
         maxSpeed = startMaxSpeed;
         hp = maxHP;
+        this.maxHp = maxHP;
     }
 
     protected void move() {
@@ -22,11 +24,15 @@ public abstract class guy extends actor {
 
     public void damage(double dmg){
         hp -= dmg;
+        allies.remove(this);
+        if (hp < 2) {
+            allies.remove(this);
+        }
     }
 
     @Override
     public void tick(){
-        if (hp < 0){
+        if (hp <= 0){
             allies.remove(this);
         }
     }
@@ -39,5 +45,22 @@ public abstract class guy extends actor {
         if (Math.abs(speed) < maxSpeed) {
             this.speed = speed;
         }
+    }
+
+    public double getHp() {
+        return hp;
+    }
+    public double getMaxHp() {
+        return maxHp;
+    }
+
+    public double getDirection() {
+        return direction;
+    }
+    public double getSpeed() {
+        return speed;
+    }
+    public double getMaxSpeed() {
+        return maxSpeed;
     }
 }

@@ -16,6 +16,8 @@ public class Main {
         game.team1Actors.add(base);
         base.spawnInfantryGuy();
 
+        game.team2Actors.add(new infantryGuy(250, 300, game.team1Actors, game.team2Actors));
+
         GameView gameView = null;
 
         if (VISUALIZING) {
