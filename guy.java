@@ -1,13 +1,31 @@
 import java.lang.Math;
+import java.util.ArrayList;
 
-public class guy extends actor {
+public abstract class guy extends actor {
     private double direction;
-    private int speed;
-    private int maxSpeed;
+    private double speed;
+    private double maxSpeed;
+    private double hp;
 
-    public void tick() {
-        this.x += Math.sin(direction) * speed;
-        this.y += Math.cos(direction) * speed;
+    public guy(int startx, int starty, int startMaxSpeed, int maxHP) {
+        x = startx;
+        y = starty;
+        maxSpeed = startMaxSpeed;
+        hp = maxHP;
+    }
+
+    public void move() {
+        x += Math.sin(direction) * speed;
+        y += Math.cos(direction) * speed;
+    }
+
+    public void damage(double dmg){
+        hp -= dmg;
+    }
+    public void tick(ArrayList<actor> allies, ArrayList<actor> enemies){
+        if (hp < 0){
+            allies.remove(this);
+        }
     }
 
     public void setDirection(double direction) {
@@ -18,10 +36,6 @@ public class guy extends actor {
         if (Math.abs(speed) < maxSpeed) {
             this.speed = speed;
         }
-    }
-
-    public void draw() {
-
     }
 
 }

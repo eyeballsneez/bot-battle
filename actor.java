@@ -1,18 +1,18 @@
-
+import java.util.ArrayList;
 
 abstract class actor {
 
-    int x;
-    int y;
+    protected double x;
+    protected double y;
 
-    public int getX() {
+    public double getX() {
         return x;
     }
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public abstract void tick();
+    public abstract void tick(ArrayList<actor> allies, ArrayList<actor> enemies);
 
     public abstract void draw();
 }
