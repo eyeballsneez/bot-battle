@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class guy extends actor {
     private double direction;
     private int speed;

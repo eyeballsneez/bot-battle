@@ -1,4 +1,4 @@
-import java.lang.Math;
+
 
 abstract class actor {
 
@@ -16,4 +16,3 @@ abstract class actor {
 
     public abstract void draw();
 }
-
