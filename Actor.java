@@ -12,9 +12,13 @@ public class actor {
         return y;
     }
 
-    public tick();
+    public void tick() {
 
-    public draw();
+    }
+
+    public void draw() {
+
+    }
 }
 public class base extends actor {
     private int money;
@@ -25,7 +29,8 @@ public class base extends actor {
         income = startingIncome;
     }
 
-    public tick() {
+    @Override
+    public void tick() {
         money += income;
     }
 
@@ -36,7 +41,7 @@ public class guy extends actor {
     private int speed;
     private int maxSpeed;
 
-    public tick() {
+    public void tick() {
         this.x += Math.sin(direction) * speed;
         this.y += Math.cos(direction) * speed;
     }
