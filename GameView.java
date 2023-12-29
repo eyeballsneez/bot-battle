@@ -87,7 +87,6 @@ public class GameView extends PApplet {
                 drawBase((base) actor, 2);
             } else if (actor instanceof guy) {
                 drawGuy((guy) actor, 2);
-                System.out.println(((guy) actor).getHp());
             } else if (actor instanceof projectile) {
                 drawProjectile((projectile) actor, 2);
             }

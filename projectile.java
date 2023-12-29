@@ -16,7 +16,8 @@ public class projectile extends actor {
         this.x += Math.sin(direction) * speed;
         this.y += Math.cos(direction) * speed;
 
-        for (actor enemy : enemies){
+        for (int i = 0; i < enemies.size(); i++) {
+            actor enemy = enemies.get(i);
             if (enemy instanceof guy) {
                 guy enemyGuy = (guy) enemy;
 

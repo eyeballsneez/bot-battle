@@ -24,8 +24,7 @@ public abstract class guy extends actor {
 
     public void damage(double dmg){
         hp -= dmg;
-        allies.remove(this);
-        if (hp < 2) {
+        if (hp <= 0) {
             allies.remove(this);
         }
     }

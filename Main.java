@@ -12,11 +12,16 @@ public class Main {
 
         boolean gameRunning = true;
         Game game = new Game();
-        base base = new base(50, 1, 400, 400, game.team1Actors, game.team2Actors);
-        game.team1Actors.add(base);
-        base.spawnInfantryGuy();
 
-        game.team2Actors.add(new infantryGuy(250, 300, game.team1Actors, game.team2Actors));
+        base base1 = new base(50, 1, 400, 400, game.team1Actors, game.team2Actors);
+        game.team1Actors.add(base1);
+        base1.spawnInfantryGuy();
+
+        base base2 = new base(50, 1, 200, 200, game.team2Actors, game.team1Actors);
+        game.team2Actors.add(base2);
+        base2.spawnInfantryGuy();
+        game.team2Actors.get(1).x = 250;
+        game.team2Actors.get(1).y = 300;
 
         GameView gameView = null;
 
