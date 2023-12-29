@@ -38,5 +38,4 @@ public abstract class guy extends actor {
             this.speed = speed;
         }
     }
-
 }
