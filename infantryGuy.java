@@ -8,8 +8,10 @@ public class infantryGuy extends guy {
     }
 
     public void shoot(){
+        if (gunCooldown > 0) return;
+
         gunCooldown = gunMaxCooldown;
-        allies.add(new projectile(x, y, 20, direction, 1, 5, allies, enemies));
+        allies.add(new projectile(this.x, this.y, 10, direction, 1, 5, allies, enemies));
     }
 
     @Override

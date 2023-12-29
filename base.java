@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class base extends actor {
@@ -23,9 +24,14 @@ public class base extends actor {
         if (money >= 50)
         {
             money -= 50;
-            allies.add(new infantryGuy(x, y, allies, enemies));
+            infantryGuy infantry = new infantryGuy(x, y, allies, enemies);
+            allies.add(infantry);
         }
 
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     @Override

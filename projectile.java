@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class projectile extends actor{
-    private double x, y, speed, direction, dmg, size;
+    private double speed, direction, dmg, size;
     public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, ArrayList<actor> allies, ArrayList<actor> enemies){
         super(allies, enemies);
         x = startx;
@@ -30,7 +30,7 @@ public class projectile extends actor{
         }
     }
 
-    public void draw() {
-
+    public double getDirection() {
+        return direction;
     }
 }

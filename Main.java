@@ -1,5 +1,7 @@
 import processing.core.*;
 
+import java.time.LocalDateTime;
+
 public class Main {
 
     /*      SETTINGS        */
@@ -10,10 +12,9 @@ public class Main {
 
         boolean gameRunning = true;
         Game game = new Game();
-        game.team1Actors.add(new base(0, 1, 400, 400, game.team1Actors, game.team2Actors));
-        infantryGuy infantry = new infantryGuy(300, 300, game.team1Actors, game.team2Actors);
-        infantry.setSpeed(3);
-        game.team1Actors.add(infantry);
+        base base = new base(50, 1, 400, 400, game.team1Actors, game.team2Actors);
+        game.team1Actors.add(base);
+        base.spawnInfantryGuy();
 
         GameView gameView = null;
 
@@ -41,6 +42,11 @@ public class Main {
                 now = System.nanoTime();
                 updateTime = System.nanoTime() - now;
                 wait = (OPTIMAL_TIME - updateTime) / 1000000;
+
+                infantryGuy infantry = (infantryGuy) game.team1Actors.get(1);
+                infantry.setSpeed(4);
+                infantry.setDirection((double) LocalDateTime.now().getNano() / 1000000000 * 2 * Math.PI);
+                infantry.shoot();
 
                 try {
                     Thread.sleep(wait);
