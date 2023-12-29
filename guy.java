@@ -23,7 +23,9 @@ public abstract class guy extends actor {
     public void damage(double dmg){
         hp -= dmg;
     }
-    public void tick(ArrayList<actor> allies, ArrayList<actor> enemies){
+
+    @Override
+    public void tick(){
         if (hp < 0){
             allies.remove(this);
         }

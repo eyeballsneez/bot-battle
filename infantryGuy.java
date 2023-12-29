@@ -12,11 +12,9 @@ public class infantryGuy extends guy {
         allies.add(new projectile(x, y, 20, direction, 1, 5, allies, enemies));
     }
 
+    @Override
     public void tick(){
         gunCooldown -= 1;
         super.move();
-    }
-    public void draw(){
-
     }
 }

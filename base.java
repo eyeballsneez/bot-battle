@@ -28,12 +28,8 @@ public class base extends actor {
 
     }
 
+    @Override
     public void tick() {
         money += income;
     }
-
-    public void draw() {
-
-    }
-
 }

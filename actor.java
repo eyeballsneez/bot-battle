@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-abstract class actor {
+public abstract class actor {
 
     protected double x;
     protected double y;
@@ -21,6 +21,4 @@ abstract class actor {
     }
 
     public abstract void tick();
-
-    public abstract void draw();
 }
