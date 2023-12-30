@@ -28,6 +28,37 @@ public abstract class guy extends actor {
     protected void move() {
         x += Math.sin(direction) * speed;
         y += Math.cos(direction) * speed;
+
+        x = Math.max(x, 0);
+        x = Math.min(x, 800);
+        y = Math.max(y, 0);
+        y = Math.min(y, 800);
+
+        for (int i = 0; i < allies.size(); i++) {
+            actor ally = allies.get(i);
+            double dist = Math.sqrt((y - ally.getY()) * (y - ally.getY()) + (x - ally.getX()) * (x - ally.getX()));
+
+            if ((ally instanceof guy) && ally != this) {
+                if (dist < size/4)
+                {
+                    x -= Math.sin(direction) * speed;
+                    y -= Math.cos(direction) * speed;
+                }
+            }
+        }
+        for (int i = 0; i < enemies.size(); i++) {
+            actor enemy = enemies.get(i);
+            double dist = Math.sqrt((y - enemy.getY()) * (y - enemy.getY()) + (x - enemy.getX()) * (x - enemy.getX()));
+
+            if ((enemy instanceof guy)) {
+                if (dist < size/4)
+                {
+                    x -= Math.sin(direction) * speed;
+                    y -= Math.cos(direction) * speed;
+                }
+            }
+        }
+
     }
 
     public void damage(double dmg){

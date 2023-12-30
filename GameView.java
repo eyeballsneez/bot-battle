@@ -67,8 +67,10 @@ public class GameView extends PApplet {
 
     public void draw() {
         background(255);
+        drawBase((base) game.team1Actors.get(0), 1);
+        drawBase((base) game.team2Actors.get(0), 2);
 
-        for (int i = 0; i < game.team1Actors.size(); i++) {
+        for (int i = 1; i < game.team1Actors.size(); i++) {
             actor actor = game.team1Actors.get(i);
             if (actor instanceof base) {
                 drawBase((base) actor, 1);
@@ -79,7 +81,7 @@ public class GameView extends PApplet {
             }
         }
 
-        for (int i = 0; i < game.team2Actors.size(); i++) {
+        for (int i = 1; i < game.team2Actors.size(); i++) {
             actor actor = game.team2Actors.get(i);
             if (actor instanceof base) {
                 drawBase((base) actor, 2);
