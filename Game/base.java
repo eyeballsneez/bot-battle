@@ -15,7 +15,7 @@ public class base extends actor {
     }
 
     public void invest(int amount) {
-        if (amount < money) {
+        if (amount <= money) {
             money -= amount;
             income += amount / 100;
         }
