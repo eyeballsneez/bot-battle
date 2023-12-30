@@ -3,7 +3,7 @@ package Bots;
 import java.util.ArrayList;
 import Game.*;
 
-// Create a new bot class by extending the Bots.Bot class
+// Create a new bot class by extending the Bot class
 public class DemoBot extends Bot {
     /*  Bots are exposed an ArrayList of allies and an ArrayList of enemies  */
     /*  Your constructor should call super as follows:   */
@@ -12,17 +12,17 @@ public class DemoBot extends Bot {
     }
 
     /*  AVAILABLE METHODS   */
-    /*  Game.actor.getX() and Game.actor.getY()        - returns the x and y coordinates of the Game.actor
-    /*  Game.base.invest(int amount)             - removes amount from your Game.base's money, but increases your income by amount / 100
-    /*  Game.base.spawnInfantryGuy()             - spawns an Game.infantryGuy at the location of your Game.base, if your Game.base has enough money
-    /*  Game.guy.setDirection(double direction)  - points the Game.guy in the desired direction
+    /*  actor.getX() and Game.actor.getY()  - returns the x and y coordinates of the Game.actor
+    /*  base.invest(int amount)             - removes amount from your base's money, but increases your income by amount / 100
+    /*  base.spawnInfantryGuy()             - spawns an infantryGuy at the location of your base, if your base has enough money
+    /*  guy.setDirection(double direction)  - points the guy in the desired direction
                                                 (in radians)
-    /*  Game.guy.setSpeed(double speed)          - sets the Game.guy's movement speed
-    /*  Game.guy.getDirection()                  - returns the Game.guy's direction
-    /*  Game.guy.getSpeed()                      - returns the Game.guy's speed
-    /*  Game.guy.getMaxSpeed()                   - returns the Game.guy's maximum speed
-    /*  Game.infantryGuy.shoot()                 - shoots a Game.projectile in the direction the Game.infantryGuy is facing
-                                                (shoots after cooldown time elapsed, limited range and Game.projectile speed)
+    /*  guy.setSpeed(double speed)          - sets the guy's movement speed
+    /*  guy.getDirection()                  - returns the guy's direction
+    /*  guy.getSpeed()                      - returns the guy's speed
+    /*  guy.getMaxSpeed()                   - returns the guy's maximum speed
+    /*  infantryGuy.shoot()                 - shoots a projectile in the direction the infantryGuy is facing
+                                                (shoots after cooldown time elapsed, limited range and projectile speed)
     */
 
     /*  tick() is called every game tick   */
