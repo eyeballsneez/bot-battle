@@ -9,7 +9,7 @@ public class GameView extends PApplet {
     }
 
     public void settings() {
-        size(800, 800);
+        size(900, 900);
     }
 
     public void setup() {

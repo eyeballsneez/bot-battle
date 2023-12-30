@@ -14,18 +14,17 @@ public class base extends actor {
     }
 
     public void invest(int amount) {
-        if (amount < money){
+        if (amount < money) {
             money -= amount;
             income += amount / 100;
         }
     }
 
-    public void spawnInfantryGuy(){
-        if (money >= 50)
-        {
+    public void spawnInfantryGuy() {
+        if (money >= 50) {
             money -= 50;
             infantryGuy infantry = new infantryGuy(x, y, allies, enemies, game);
-            allies.add(infantry);
+            game.add(infantry, allies);
         }
 
     }
