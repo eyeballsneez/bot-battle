@@ -54,6 +54,9 @@ public class GameView extends PApplet {
         rect(x - halfWidth, y + 25, 2 * halfWidth, thickness);
         fill(color(0, 255, 0));
         rect(x - halfWidth, y + 25, (2 * halfWidth) * (float) (guy.getHp() / guy.getMaxHp()), thickness);
+        strokeWeight(2);
+        line(x, y,  ((float) (x+(Math.sin(guy.getDirection())*(guy.getSize()/2)))), ((float) (y+(Math.cos(guy.getDirection())*(guy.getSize()/2)))));
+        strokeWeight(0);
     }
     public void drawProjectile(projectile projectile, int team) {
         if (team == 1) {
