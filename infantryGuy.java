@@ -11,7 +11,7 @@ public class infantryGuy extends guy {
         if (gunCooldown > 0) return;
 
         gunCooldown = gunMaxCooldown;
-        game.add(new projectile(this.x, this.y, 10, direction, 1, 5, allies, enemies, game), allies);
+        game.add(new projectile(this.x, this.y, 10, direction, 1, 5, 50, allies, enemies, game), allies);
     }
 
     @Override
