@@ -45,7 +45,8 @@ public class GameView extends PApplet {
         float y = (float) guy.getY();
 
         strokeWeight(0);
-        ellipse(x, y, 20, 20);
+
+        ellipse(x, y, (float) guy.getSize(), (float) guy.getSize());
 
         fill(color(255, 0, 0));
         int halfWidth = 15;

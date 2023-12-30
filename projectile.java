@@ -23,7 +23,7 @@ public class projectile extends actor {
 
                 double dist = Math.sqrt((y - enemy.getY()) * (y - enemy.getY()) + (x - enemy.getX()) * (x - enemy.getX()));
 
-                if (dist < size) {
+                if (dist < (size + enemyGuy.getSize())/2) {
                     enemyGuy.damage(dmg);
                     game.remove(this);
                 }

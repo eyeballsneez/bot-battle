@@ -13,11 +13,11 @@ public class Main {
         boolean gameRunning = true;
         Game game = new Game();
 
-        base base1 = new base(50, 1, 400, 400, game.team1Actors, game.team2Actors, game);
+        base base1 = new base(50, 1, 700, 700, game.team1Actors, game.team2Actors, game);
         game.team1Actors.add(base1);
         base1.spawnInfantryGuy();
 
-        base base2 = new base(50, 1, 200, 200, game.team2Actors, game.team1Actors, game);
+        base base2 = new base(50, 1, 100, 100, game.team2Actors, game.team1Actors, game);
         game.team2Actors.add(base2);
         base2.spawnInfantryGuy();
         game.team2Actors.get(1).x = 250;

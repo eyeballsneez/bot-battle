@@ -7,14 +7,20 @@ public abstract class guy extends actor {
     private double maxSpeed;
     private double hp;
     private double maxHp;
+    private double size;
 
-    public guy(double startx, double starty, double startMaxSpeed, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies, Game game) {
+    public guy(double startx, double starty, double startMaxSpeed, double size, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies, Game game) {
         super(allies, enemies, game);
         x = startx;
         y = starty;
         maxSpeed = startMaxSpeed;
         hp = maxHP;
         this.maxHp = maxHP;
+        this.size = size;
+    }
+
+    public double getSize() {
+        return size;
     }
 
     protected void move() {

@@ -4,7 +4,7 @@ public class infantryGuy extends guy {
     int gunCooldown;
     static final int gunMaxCooldown = 1;
     public infantryGuy(double startx, double starty, ArrayList<actor> allies, ArrayList<actor> enemies, Game game){
-        super(startx, starty, 5, 5, allies, enemies, game);
+        super(startx, starty, 5, 20, 5, allies, enemies, game);
     }
 
     public void shoot() {
