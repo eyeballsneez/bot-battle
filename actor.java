@@ -4,8 +4,8 @@ public abstract class actor {
 
     protected double x;
     protected double y;
-    ArrayList<actor> allies;
-    ArrayList<actor> enemies;
+    protected ArrayList<actor> allies;
+    protected ArrayList<actor> enemies;
 
     Game game;
 

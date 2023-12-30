@@ -44,8 +44,8 @@ public abstract class guy extends actor {
         this.direction = direction;
     }
 
-    public void setSpeed(int speed) {
-        if (Math.abs(speed) < maxSpeed) {
+    public void setSpeed(double speed) {
+        if (Math.abs(speed) <= maxSpeed) {
             this.speed = speed;
         }
     }
