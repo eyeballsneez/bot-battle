@@ -1,8 +1,11 @@
+package Game;
+
 import java.util.ArrayList;
 
 public class projectile extends actor {
     private double speed, direction, dmg, size;
-    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, ArrayList<actor> allies, ArrayList<actor> enemies, Game game){
+    private int lifespan;
+    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, int lifespan, ArrayList<actor> allies, ArrayList<actor> enemies, Game game){
         super(allies, enemies, game);
         x = startx;
         y = starty;
@@ -10,9 +13,13 @@ public class projectile extends actor {
         direction = initdirection;
         dmg = setdmg;
         this.size = size;
+
+        this.lifespan = lifespan;
     }
 
     public void tick() {
+        lifespan -= 1;
+
         this.x += Math.sin(direction) * speed;
         this.y += Math.cos(direction) * speed;
 
@@ -29,6 +36,8 @@ public class projectile extends actor {
                 }
             }
         }
+
+        if (lifespan <= 0) game.remove(this);
     }
 
     public double getDirection() {

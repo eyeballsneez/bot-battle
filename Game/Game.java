@@ -1,8 +1,10 @@
+package Game;
+
 import java.util.ArrayList;
 
 public class Game {
-    ArrayList<actor> team1Actors;
-    ArrayList<actor> team2Actors;
+    public ArrayList<actor> team1Actors;
+    public ArrayList<actor> team2Actors;
     ArrayList<actor> addTeam1Queue;
     ArrayList<actor> addTeam2Queue;
     ArrayList<actor> removeQueue;

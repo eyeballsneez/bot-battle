@@ -1,3 +1,5 @@
+package Game;
+
 import java.lang.Math;
 import java.util.ArrayList;
 
@@ -33,11 +35,6 @@ public abstract class guy extends actor {
         if (hp <= 0) {
             game.remove(this);
         }
-    }
-
-    @Override
-    public void tick(){
-
     }
 
     public void setDirection(double direction) {

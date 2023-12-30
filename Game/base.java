@@ -1,4 +1,5 @@
-import java.time.LocalDateTime;
+package Game;
+
 import java.util.ArrayList;
 
 public class base extends actor {
@@ -31,6 +32,10 @@ public class base extends actor {
 
     public int getMoney() {
         return money;
+    }
+
+    public int getIncome() {
+        return income;
     }
 
     @Override

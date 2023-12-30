@@ -1,4 +1,7 @@
+import Game.*;
 import processing.core.PApplet;
+
+import java.util.ArrayList;
 
 public class GameView extends PApplet {
     Game game;
@@ -7,11 +10,9 @@ public class GameView extends PApplet {
         super();
         this.game = game;
     }
-
     public void settings() {
         size(900, 900);
     }
-
     public void setup() {
         noLoop();
     }
@@ -33,7 +34,6 @@ public class GameView extends PApplet {
         fill(0);
         text(money, x, y + 50);
     }
-
     public void drawGuy(guy guy, int team) {
         if (team == 1) {
             fill(color(20, 50, 255));
@@ -55,7 +55,6 @@ public class GameView extends PApplet {
         fill(color(0, 255, 0));
         rect(x - halfWidth, y + 25, (2 * halfWidth) * (float) (guy.getHp() / guy.getMaxHp()), thickness);
     }
-
     public void drawProjectile(projectile projectile, int team) {
         if (team == 1) {
             fill(color(0, 0, 255));
@@ -71,7 +70,6 @@ public class GameView extends PApplet {
 
         for (int i = 0; i < game.team1Actors.size(); i++) {
             actor actor = game.team1Actors.get(i);
-
             if (actor instanceof base) {
                 drawBase((base) actor, 1);
             } else if (actor instanceof guy) {
@@ -83,7 +81,6 @@ public class GameView extends PApplet {
 
         for (int i = 0; i < game.team2Actors.size(); i++) {
             actor actor = game.team2Actors.get(i);
-
             if (actor instanceof base) {
                 drawBase((base) actor, 2);
             } else if (actor instanceof guy) {

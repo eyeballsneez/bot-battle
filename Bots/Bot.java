@@ -1,3 +1,6 @@
+package Bots;
+
+import Game.actor;
 import java.util.ArrayList;
 
 public abstract class Bot {
