@@ -22,8 +22,8 @@ public class base extends actor {
     }
 
     public void spawnInfantryGuy() {
-        if (money >= 50) {
-            money -= 50;
+        if (money >= 150) {
+            money -= 150;
             infantryGuy infantry = new infantryGuy(x, y, allies, enemies, game);
             game.add(infantry, allies);
         }
