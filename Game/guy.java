@@ -26,8 +26,8 @@ public abstract class guy extends actor {
     }
 
     protected void move() {
-        x += Math.sin(direction) * speed;
-        y += Math.cos(direction) * speed;
+        x += Math.cos(direction) * speed;
+        y += Math.sin(direction) * speed;
 
         x = Math.max(x, 0);
         x = Math.min(x, 800);

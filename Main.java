@@ -11,7 +11,7 @@ public class Main {
     public static Game startNewGame() {
         Game game = new Game();
 
-        base base1 = new base(50, 1, 800, 800, game.team1Actors, game.team2Actors, game);
+        base base1 = new base(50, 1, 700, 700, game.team1Actors, game.team2Actors, game);
         game.add(base1, game.team1Actors);
 
         base base2 = new base(50, 1, 100, 100, game.team2Actors, game.team1Actors, game);
@@ -27,7 +27,7 @@ public class Main {
         Game game = startNewGame();
         GameView gameView = null;
 
-        Bot team1Bot = new DemoBot(game.team1Actors, game.team2Actors);
+        Bot team1Bot = new NathanBot(game.team1Actors, game.team2Actors);
         Bot team2Bot = new DummyBot(game.team2Actors, game.team1Actors);
 
         if (VISUALIZING) {
@@ -39,15 +39,15 @@ public class Main {
 
         if (!VISUALIZING) {
             while (gameRunning) {
-                game.tick();
                 team1Bot.tick();
                 team2Bot.tick();
+                game.tick();
             }
         } else {
             while (gameRunning) {
-                game.tick();
                 team1Bot.tick();
                 team2Bot.tick();
+                game.tick();
 
                 gameView.redraw();
 

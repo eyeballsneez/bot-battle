@@ -20,8 +20,8 @@ public class projectile extends actor {
     public void tick() {
         lifespan -= 1;
 
-        this.x += Math.sin(direction) * speed;
-        this.y += Math.cos(direction) * speed;
+        this.x += Math.cos(direction) * speed;
+        this.y += Math.sin(direction) * speed;
 
         for (int i = 0; i < enemies.size(); i++) {
             actor enemy = enemies.get(i);
@@ -45,5 +45,9 @@ public class projectile extends actor {
     }
     public double getSize() {
         return size;
+    }
+
+    public double getSpeed() {
+        return speed;
     }
 }
