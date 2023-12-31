@@ -6,7 +6,7 @@ public class Main {
 
     /*      SETTINGS        */
     static boolean VISUALIZING = true;
-    static final int TARGET_FPS = 60;
+    static final int TARGET_FPS = 120;
 
     public static Game startNewGame() {
         Game game = new Game();

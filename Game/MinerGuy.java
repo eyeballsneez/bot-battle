@@ -17,8 +17,7 @@ public class MinerGuy extends Guy {
     public void tick() {
         if (this.getSpeed() == 0) {
             Base base = (Base) allies.get(0);
-            double dist = Math.sqrt((y - base.getY()) * (y - base.getY()) + (x - base.getX()) * (x - base.getX()));
-            base.addMoney((int) Math.ceil(dist / 2000));
+            base.addMoney(getIncome());
         }
         super.move();
     }
