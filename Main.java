@@ -11,10 +11,10 @@ public class Main {
     public static Game startNewGame() {
         Game game = new Game();
 
-        base base1 = new base(50, 1, 700, 700, game.team1Actors, game.team2Actors, game);
+        base base1 = new base(50, 700, 700, game.team1Actors, game.team2Actors, game);
         game.add(base1, game.team1Actors);
 
-        base base2 = new base(50, 1, 100, 100, game.team2Actors, game.team1Actors, game);
+        base base2 = new base(50, 100, 100, game.team2Actors, game.team1Actors, game);
         game.add(base2, game.team2Actors);
 
         return game;

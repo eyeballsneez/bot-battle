@@ -30,6 +30,23 @@ public class base extends actor {
 
     }
 
+<<<<<<< Updated upstream
+=======
+
+    public void spawnMineGuy() {
+        if (money >= 500) {
+            money -= 500;
+            mineGuy miner = new mineGuy(x, y, allies, enemies, game);
+            game.add(miner, allies);
+        }
+
+    }
+
+    protected void addMoney(int cash) {
+        cash += money;
+    }
+
+>>>>>>> Stashed changes
     public int getMoney() {
         return money;
     }
