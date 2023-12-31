@@ -1,14 +1,33 @@
 import Game.*;
 import processing.core.PApplet;
+import processing.event.*;
 
 import java.util.ArrayList;
 
 public class GameView extends PApplet {
     Game game;
 
+    int cameraX, cameraY;
+    float zoom;
+
+    boolean leftPressed;
+    boolean rightPressed;
+    boolean upPressed;
+    boolean downPressed;
+
+    int zoomCount;
+
     public GameView(Game game) {
         super();
         this.game = game;
+        cameraX = 400;
+        cameraY = 400;
+        zoom = 1;
+
+        leftPressed = false;
+        rightPressed = false;
+        upPressed = false;
+        downPressed = false;
     }
     public void settings() {
         size(800, 800);
@@ -68,8 +87,88 @@ public class GameView extends PApplet {
         ellipse((float) projectile.getX(), (float) projectile.getY(), (float) projectile.getSize(), (float) projectile.getSize());
     }
 
+    public void mouseWheel(MouseEvent event) {
+        float amount = -event.getCount();
+
+        cameraX += mouseX;
+        cameraY += mouseY;
+        float delta = (float) (amount > 0 ? 1.05 : amount < 0 ? 1.0/1.05 : 1.0);
+        zoom *= delta;
+        cameraX *= delta;
+        cameraY *= delta;
+        cameraX -= mouseX;
+        cameraY -= mouseY;
+    }
+
+    public void mouseDragged() {
+        float dx = mouseX - pmouseX;
+        float dy = mouseY - pmouseY;
+        cameraX -= dx;
+        cameraY -= dy;
+    }
+
+    public void keyPressed() {
+        if (key == CODED) {
+            switch(keyCode) {
+                case LEFT:
+                    leftPressed = true;
+                    break;
+                case RIGHT:
+                    rightPressed = true;
+                    break;
+                case UP:
+                    upPressed = true;
+                    break;
+                case DOWN:
+                    downPressed = true;
+                    break;
+            }
+        }
+    }
+
+    public void keyReleased() {
+        if (key == CODED) {
+            switch(keyCode) {
+                case LEFT:
+                    leftPressed = false;
+                    break;
+                case RIGHT:
+                    rightPressed = false;
+                    break;
+                case UP:
+                    upPressed = false;
+                    break;
+                case DOWN:
+                    downPressed = false;
+                    break;
+            }
+        }
+    }
+
     public void draw() {
         background(255);
+
+        pushMatrix();
+
+        textAlign(LEFT);
+        text(cameraX + ", " + cameraY, 2, 10);
+
+        if (leftPressed) {
+            cameraX -= 10;
+        }
+        if (rightPressed) {
+            cameraX += 10;
+        }
+        if (upPressed) {
+            cameraY -= 10;
+        }
+        if (downPressed) {
+            cameraY += 10;
+        }
+
+        translate(-cameraX, -cameraY);
+        scale(zoom);
+
         drawBase((base) game.team1Actors.get(0), 1);
         drawBase((base) game.team2Actors.get(0), 2);
 
@@ -94,5 +193,7 @@ public class GameView extends PApplet {
                 drawProjectile((projectile) actor, 2);
             }
         }
+
+        popMatrix();
     }
 }

@@ -30,9 +30,9 @@ public abstract class guy extends actor {
         y += Math.sin(direction) * speed;
 
         x = Math.max(x, 0);
-        x = Math.min(x, 800);
+        x = Math.min(x, 3200);
         y = Math.max(y, 0);
-        y = Math.min(y, 800);
+        y = Math.min(y, 3200);
 
         for (int i = 0; i < allies.size(); i++) {
             actor ally = allies.get(i);
