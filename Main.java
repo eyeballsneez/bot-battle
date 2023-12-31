@@ -27,8 +27,8 @@ public class Main {
         Game game = startNewGame();
         GameView gameView = null;
 
-        Bot team1Bot = new NathanBot(game.team1Actors, game.team2Actors);
-        Bot team2Bot = new NathanOldBot(game.team2Actors, game.team1Actors);
+        Bot team1Bot = new salBot(game.team1Actors, game.team2Actors);
+        Bot team2Bot = new salBot(game.team2Actors, game.team1Actors);
 
         if (VISUALIZING) {
             gameView = new GameView(game);
