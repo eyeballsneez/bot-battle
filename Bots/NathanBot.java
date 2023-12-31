@@ -66,9 +66,7 @@ public class NathanBot extends Bot {
         }
     }
     private void performBaseAction(Base base) {
-        System.out.println(base.getMoney());
-
-        if (minerCount < 2 || income < infantryCount * 250) {
+        if (minerCount < 6 || income < infantryCount * 600) {
             if (base.getMoney() >= 500) {
                 base.spawnMineGuy();
             }
@@ -107,66 +105,110 @@ public class NathanBot extends Bot {
     }
 
     private void performInfantryAction(InfantryGuy infantry) {
-        double closestEnemyDistance = Double.MAX_VALUE;
-        Guy closestEnemy = null;
+        double closestInfantryDistance = Double.MAX_VALUE;
+        InfantryGuy closestInfantry = null;
 
         double closestProjectileDistance = Double.MAX_VALUE;
         Projectile closestProjectile = null;
 
-        for (Actor enemy : enemies) {
-            if (enemy instanceof Projectile projectile) {
-                double dist = distance(infantry, enemy);
+        double closestMinerDistance = Double.MAX_VALUE;
+        MinerGuy closestMiner = null;
 
+        for (Actor enemy : enemies) {
+            double dist = distance(infantry, enemy);
+
+            if (enemy instanceof Projectile projectile) {
                 if (dist < closestProjectileDistance) {
                     closestProjectile = projectile;
                     closestProjectileDistance = dist;
                 }
-            } else if (enemy instanceof Guy) {
-                double dist = distance(infantry, enemy);
-
-                if (dist < closestEnemyDistance) {
-                    closestEnemy = (Guy) enemy;
-                    closestEnemyDistance = dist;
+            }  else if (enemy instanceof MinerGuy minerGuy) {
+                if (dist < closestMinerDistance) {
+                    closestMiner = minerGuy;
+                    closestMinerDistance = dist;
+                }
+            } else if (enemy instanceof InfantryGuy guy) {
+                if (dist < closestInfantryDistance) {
+                    closestInfantry = guy;
+                    closestInfantryDistance = dist;
                 }
             }
         }
 
-        if (infantry.getGunCooldown() <= 0 && closestEnemy != null) {
-            infantry.setDirection(projectileAngle(closestEnemy, infantry));
-
-            if (closestEnemyDistance <= 290) infantry.setSpeed(-infantry.getMaxSpeed());
-            else infantry.setSpeed(infantry.getMaxSpeed());
-
-            infantry.shoot();
-        } else if (closestProjectile != null && closestProjectileDistance < 300) {
-            double angleFromProjectile = angleBetween(infantry, closestProjectile);
-
-            if (Math.abs(angleFromProjectile - closestProjectile.getDirection()) < Math.PI / closestProjectileDistance * 2) {
-                double cw = closestProjectile.getDirection() - Math.PI / 4;
-                double ccw = closestProjectile.getDirection() + Math.PI / 4;
-
-                double dcw = cw - angleFromProjectile;
-                double dccw = ccw - angleFromProjectile;
-
-                double direction = ccw;
-                if (dcw < dccw) {
-                    direction = cw;
-                }
-                infantry.setDirection(direction);
-                infantry.setSpeed(infantry.getMaxSpeed());
-            }
-        } else if (closestEnemy == null) {
-            infantry.setDirection(angleBetween(enemies.get(0), infantry));
-            if (distance(enemies.get(0), infantry) <= 290) {
-                infantry.setSpeed(-infantry.getMaxSpeed());
+        // Shooting
+        if (infantry.getGunCooldown() <= 0) {
+            if (closestInfantry == null && closestMiner == null) {
+                shootEnemyBase(infantry);
+            } else if (closestInfantryDistance < closestMinerDistance) {
+                shootAt(closestInfantry, infantry);
             } else {
-                infantry.setSpeed(infantry.getMaxSpeed());
+                shootAt(closestMiner, infantry);
             }
-        } else {
-            infantry.setDirection(projectileAngle(closestEnemy, infantry));
+        }
 
-            if (closestEnemyDistance <= 290) infantry.setSpeed(-infantry.getMaxSpeed());
-            else infantry.setSpeed(infantry.getMaxSpeed());
+        // Movement
+        if (closestProjectile != null && closestProjectileDistance < 300) {
+            dodge(closestProjectile, infantry);
+        } else if (closestMiner != null && (closestInfantry == null || closestInfantryDistance > closestMinerDistance)) {
+            intercept(closestMiner, infantry);
+        } else if (closestInfantry != null) {
+            intercept(closestInfantry, infantry);
+        } else {
+            goToEnemyBase(infantry);
+        }
+    }
+
+    private void goToEnemyBase(Guy guy) {
+        guy.setDirection(angleBetween(enemies.get(0), guy));
+        if (distance(enemies.get(0), guy) <= 290) {
+            guy.setSpeed(-guy.getMaxSpeed());
+        } else {
+            guy.setSpeed(guy.getMaxSpeed());
+        }
+    }
+
+    private void intercept(Guy enemy, Guy ally) {
+        ally.setDirection(projectileAngle(enemy, ally));
+        double distance = distance(enemy, ally);
+
+        if (distance <= 290) ally.setSpeed(-ally.getMaxSpeed());
+        else ally.setSpeed(ally.getMaxSpeed());
+    }
+
+    private void shootEnemyBase(InfantryGuy infantry) {
+        Base enemyBase = (Base) enemies.get(0);
+        infantry.setDirection(angleBetween(enemyBase, infantry));
+        infantry.shoot();
+    }
+
+    private void shootAt(Guy enemy, InfantryGuy infantry) {
+        infantry.setDirection(projectileAngle(enemy, infantry));
+
+        double distance = distance(infantry, enemy);
+
+        if (distance <= 290) infantry.setSpeed(-infantry.getMaxSpeed());
+        else infantry.setSpeed(infantry.getMaxSpeed());
+
+        infantry.shoot();
+    }
+
+    private void dodge(Projectile projectile, Guy guy) {
+        double angleFromProjectile = angleBetween(guy, projectile);
+        double distance = distance(projectile, guy);
+
+        if (Math.abs(angleFromProjectile - projectile.getDirection()) < Math.PI / distance * 2) {
+            double cw = projectile.getDirection() - Math.PI / 4;
+            double ccw = projectile.getDirection() + Math.PI / 4;
+
+            double dcw = cw - angleFromProjectile;
+            double dccw = ccw - angleFromProjectile;
+
+            double direction = ccw;
+            if (dcw < dccw) {
+                direction = cw;
+            }
+            guy.setDirection(direction);
+            guy.setSpeed(guy.getMaxSpeed());
         }
     }
 
