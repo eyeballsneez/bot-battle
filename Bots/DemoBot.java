@@ -39,7 +39,7 @@ public class DemoBot extends Bot {
     private void performBaseAction(base base) {
         if (base.getMoney() > 150) {
             if (allies.size() - 1 > 10) {
-                base.invest(base.getMoney());
+                base.spawnMineGuy();
             } else {
                 base.spawnInfantryGuy();
             }

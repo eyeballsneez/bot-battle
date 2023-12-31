@@ -11,10 +11,10 @@ public class Main {
     public static Game startNewGame() {
         Game game = new Game();
 
-        base base1 = new base(50, 1, 3100, 3100, game.team1Actors, game.team2Actors, game);
+        base base1 = new base(50, 3100, 3100, game.team1Actors, game.team2Actors, game);
         game.add(base1, game.team1Actors);
 
-        base base2 = new base(50, 1, 100, 100, game.team2Actors, game.team1Actors, game);
+        base base2 = new base(50, 100, 100, game.team2Actors, game.team1Actors, game);
         game.add(base2, game.team2Actors);
 
         return game;
@@ -27,10 +27,8 @@ public class Main {
         Game game = startNewGame();
         GameView gameView = null;
 
-        // blue
-        Bot team1Bot = new InvestorBot(game.team1Actors, game.team2Actors);
-        // red
-        Bot team2Bot = new NathanBot(game.team2Actors, game.team1Actors);
+        Bot team1Bot = new salBot(game.team1Actors, game.team2Actors);
+        Bot team2Bot = new salBot(game.team2Actors, game.team1Actors);
 
         if (VISUALIZING) {
             gameView = new GameView(game);
