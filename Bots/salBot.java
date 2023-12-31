@@ -13,6 +13,8 @@ public class salBot extends Bot {
         super(allies, enemies);
     }
 
+    int income;
+
     @Override
     public void tick() {
         for (actor actor : allies) {
