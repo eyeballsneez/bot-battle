@@ -37,7 +37,7 @@ public class DemoBot extends Bot {
         }
     }
     private void performBaseAction(base base) {
-        if (base.getMoney() > 50) {
+        if (base.getMoney() > 150) {
             if (allies.size() - 1 > 10) {
                 base.invest(base.getMoney());
             } else {
@@ -65,7 +65,7 @@ public class DemoBot extends Bot {
             double dist = dx * dx + dy * dy;
             if (dist < closestDistance) {
                 closestDistance = dist;
-                angle = Math.atan2(dx, dy);
+                angle = Math.atan2(dy, dx);
             }
         }
 
