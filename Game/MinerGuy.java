@@ -11,7 +11,7 @@ public class MinerGuy extends Guy {
     public int getIncome() {
         Base base = (Base) allies.get(0);
         double dist = Math.sqrt((y - base.getY()) * (y - base.getY()) + (x - base.getX()) * (x - base.getX()));
-        return (int) Math.ceil(dist / 2000);
+        return (int) Math.ceil(dist / 5000);
     }
 
     public void tick() {

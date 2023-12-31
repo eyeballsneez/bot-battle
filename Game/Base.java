@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Base extends Actor {
 
-    public static final int infantryCost = 150;
+    public static final int infantryCost = 250;
     public static final int minerCost = 500;
     private int money;
 
