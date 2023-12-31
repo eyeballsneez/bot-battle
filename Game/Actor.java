@@ -2,16 +2,16 @@ package Game;
 
 import java.util.ArrayList;
 
-public abstract class actor {
+public abstract class Actor {
 
     protected double x;
     protected double y;
-    protected ArrayList<actor> allies;
-    protected ArrayList<actor> enemies;
+    protected ArrayList<Actor> allies;
+    protected ArrayList<Actor> enemies;
 
     Game game;
 
-    public actor(ArrayList<actor> allies, ArrayList<actor> enemies, Game game)
+    public Actor(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game)
     {
         this.allies = allies;
         this.enemies = enemies;

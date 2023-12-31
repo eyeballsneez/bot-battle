@@ -2,8 +2,6 @@ import Game.*;
 import processing.core.PApplet;
 import processing.event.*;
 
-import java.util.ArrayList;
-
 public class GameView extends PApplet {
     Game game;
 
@@ -15,14 +13,12 @@ public class GameView extends PApplet {
     boolean upPressed;
     boolean downPressed;
 
-    int zoomCount;
-
     public GameView(Game game) {
         super();
         this.game = game;
         cameraX = 400;
         cameraY = 400;
-        zoom = 1;
+        zoom = 0.5f;
 
         leftPressed = false;
         rightPressed = false;
@@ -36,7 +32,7 @@ public class GameView extends PApplet {
         noLoop();
     }
 
-    public void drawBase(base base, int team) {
+    public void drawBase(Base base, int team) {
         if (team == 1) {
             fill(color(0, 0, 150));
         } else if (team == 2) {
@@ -53,7 +49,7 @@ public class GameView extends PApplet {
         fill(0);
         text(money, x, y + 50);
     }
-    public void drawGuy(guy guy, int team) {
+    public void drawGuy(Guy guy, int team) {
         if (team == 1) {
             fill(color(20, 50, 255));
         } else if (team == 2) {
@@ -64,8 +60,8 @@ public class GameView extends PApplet {
         float y = (float) guy.getY();
 
         strokeWeight(0);
-        if (guy instanceof mineGuy){
-            rect(x, y, (float) guy.getSize(), (float) guy.getSize(), (float) guy.getDirection());
+        if (guy instanceof MinerGuy){
+            rect((float) (x - guy.getSize() / 2), (float) (y - guy.getSize() / 2), (float) guy.getSize(), (float) guy.getSize(), (float) guy.getDirection());
         } else {
             ellipse(x, y, (float) guy.getSize(), (float) guy.getSize());
         }
@@ -80,7 +76,7 @@ public class GameView extends PApplet {
         line(x, y,  ((float) (x+(Math.cos(guy.getDirection())*(guy.getSize()/2)))), ((float) (y+(Math.sin(guy.getDirection())*(guy.getSize()/2)))));
         strokeWeight(0);
     }
-    public void drawProjectile(projectile projectile, int team) {
+    public void drawProjectile(Projectile projectile, int team) {
         if (team == 1) {
             fill(color(0, 0, 255));
         } else if (team == 2) {
@@ -93,14 +89,14 @@ public class GameView extends PApplet {
     public void mouseWheel(MouseEvent event) {
         float amount = -event.getCount();
 
-        cameraX += mouseX;
-        cameraY += mouseY;
+        cameraX += mouseX - width / 2;
+        cameraY += mouseY - height / 2;
         float delta = (float) (amount > 0 ? 1.05 : amount < 0 ? 1.0/1.05 : 1.0);
         zoom *= delta;
         cameraX *= delta;
         cameraY *= delta;
-        cameraX -= mouseX;
-        cameraY -= mouseY;
+        cameraX -= mouseX - width / 2;
+        cameraY -= mouseY - height / 2;
     }
 
     public void mouseDragged() {
@@ -151,49 +147,40 @@ public class GameView extends PApplet {
     public void draw() {
         background(255);
 
-        pushMatrix();
-
         textAlign(LEFT);
+        fill(0);
         text(cameraX + ", " + cameraY, 2, 10);
 
-        if (leftPressed) {
-            cameraX -= 10;
-        }
-        if (rightPressed) {
-            cameraX += 10;
-        }
-        if (upPressed) {
-            cameraY -= 10;
-        }
-        if (downPressed) {
-            cameraY += 10;
-        }
+        if (leftPressed) cameraX -= 10;
+        if (rightPressed) cameraX += 10;
+        if (upPressed) cameraY -= 10;
+        if (downPressed) cameraY += 10;
 
-        translate(-cameraX, -cameraY);
+        pushMatrix();
+
+        translate(-cameraX + width / 2, -cameraY + height / 2);
         scale(zoom);
 
-        drawBase((base) game.team1Actors.get(0), 1);
-        drawBase((base) game.team2Actors.get(0), 2);
+        drawBase((Base) game.team1Actors.get(0), 1);
+        drawBase((Base) game.team2Actors.get(0), 2);
 
         for (int i = 1; i < game.team1Actors.size(); i++) {
-            actor actor = game.team1Actors.get(i);
-            if (actor instanceof base) {
-                drawBase((base) actor, 1);
-            } else if (actor instanceof guy) {
-                drawGuy((guy) actor, 1);
-            } else if (actor instanceof projectile) {
-                drawProjectile((projectile) actor, 1);
+            Actor actor = game.team1Actors.get(i);
+
+            if (actor instanceof Guy) {
+                drawGuy((Guy) actor, 1);
+            } else if (actor instanceof Projectile) {
+                drawProjectile((Projectile) actor, 1);
             }
         }
 
         for (int i = 1; i < game.team2Actors.size(); i++) {
-            actor actor = game.team2Actors.get(i);
-            if (actor instanceof base) {
-                drawBase((base) actor, 2);
-            } else if (actor instanceof guy) {
-                drawGuy((guy) actor, 2);
-            } else if (actor instanceof projectile) {
-                drawProjectile((projectile) actor, 2);
+            Actor actor = game.team2Actors.get(i);
+
+            if (actor instanceof Guy) {
+                drawGuy((Guy) actor, 2);
+            } else if (actor instanceof Projectile) {
+                drawProjectile((Projectile) actor, 2);
             }
         }
 

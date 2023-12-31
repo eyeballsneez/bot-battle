@@ -1,12 +1,12 @@
 package Bots;
 
-import Game.actor;
+import Game.Actor;
 import java.util.ArrayList;
 
 public abstract class Bot {
-    protected ArrayList<actor> allies;
-    protected ArrayList<actor> enemies;
-    public Bot(ArrayList<actor> allies, ArrayList<actor> enemies) {
+    protected ArrayList<Actor> allies;
+    protected ArrayList<Actor> enemies;
+    public Bot(ArrayList<Actor> allies, ArrayList<Actor> enemies) {
         this.allies = allies;
         this.enemies = enemies;
     }

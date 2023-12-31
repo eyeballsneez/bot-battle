@@ -2,10 +2,10 @@ package Game;
 
 import java.util.ArrayList;
 
-public class projectile extends actor {
+public class Projectile extends Actor {
     private double speed, direction, dmg, size;
     private int lifespan;
-    public projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, int lifespan, ArrayList<actor> allies, ArrayList<actor> enemies, Game game){
+    public Projectile(double startx, double starty, double initspeed, double initdirection, double setdmg, double size, int lifespan, ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game){
         super(allies, enemies, game);
         x = startx;
         y = starty;
@@ -24,9 +24,9 @@ public class projectile extends actor {
         this.y += Math.sin(direction) * speed;
 
         for (int i = 0; i < enemies.size(); i++) {
-            actor enemy = enemies.get(i);
-            if (enemy instanceof guy) {
-                guy enemyGuy = (guy) enemy;
+            Actor enemy = enemies.get(i);
+            if (enemy instanceof Guy) {
+                Guy enemyGuy = (Guy) enemy;
 
                 double dist = Math.sqrt((y - enemy.getY()) * (y - enemy.getY()) + (x - enemy.getX()) * (x - enemy.getX()));
 

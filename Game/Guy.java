@@ -3,7 +3,7 @@ package Game;
 import java.lang.Math;
 import java.util.ArrayList;
 
-public abstract class guy extends actor {
+public abstract class Guy extends Actor {
     protected double direction;
     private double speed;
     private double maxSpeed;
@@ -11,7 +11,7 @@ public abstract class guy extends actor {
     private double maxHp;
     private double size;
 
-    public guy(double startx, double starty, double startMaxSpeed, double size, double maxHP, ArrayList<actor> allies, ArrayList<actor> enemies, Game game) {
+    public Guy(double startx, double starty, double startMaxSpeed, double size, double maxHP, ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
         super(allies, enemies, game);
         x = startx;
         y = starty;
@@ -35,10 +35,10 @@ public abstract class guy extends actor {
         y = Math.min(y, 3200);
 
         for (int i = 0; i < allies.size(); i++) {
-            actor ally = allies.get(i);
+            Actor ally = allies.get(i);
             double dist = Math.sqrt((y - ally.getY()) * (y - ally.getY()) + (x - ally.getX()) * (x - ally.getX()));
 
-            if ((ally instanceof guy) && ally != this) {
+            if ((ally instanceof Guy) && ally != this) {
                 if (dist < size/4)
                 {
                     x -= Math.sin(direction) * speed;
@@ -47,10 +47,10 @@ public abstract class guy extends actor {
             }
         }
         for (int i = 0; i < enemies.size(); i++) {
-            actor enemy = enemies.get(i);
+            Actor enemy = enemies.get(i);
             double dist = Math.sqrt((y - enemy.getY()) * (y - enemy.getY()) + (x - enemy.getX()) * (x - enemy.getX()));
 
-            if ((enemy instanceof guy)) {
+            if ((enemy instanceof Guy)) {
                 if (dist < size/4)
                 {
                     x -= Math.sin(direction) * speed;

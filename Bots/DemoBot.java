@@ -7,7 +7,7 @@ import Game.*;
 public class DemoBot extends Bot {
     /*  Bots are exposed an ArrayList of allies and an ArrayList of enemies  */
     /*  Your constructor should call super as follows:   */
-    public DemoBot(ArrayList<actor> allies, ArrayList<actor> enemies) {
+    public DemoBot(ArrayList<Actor> allies, ArrayList<Actor> enemies) {
         super(allies, enemies);
     }
 
@@ -28,15 +28,15 @@ public class DemoBot extends Bot {
     /*  tick() is called every game tick   */
     @Override
     public void tick() {
-        for (actor ally : allies) {
-            if (ally instanceof base base) {
+        for (Actor ally : allies) {
+            if (ally instanceof Base base) {
                 performBaseAction(base);
-            } else if (ally instanceof guy guy) {
+            } else if (ally instanceof Guy guy) {
                 performGuyAction(guy);
             }
         }
     }
-    private void performBaseAction(base base) {
+    private void performBaseAction(Base base) {
         if (base.getMoney() > 150) {
             if (allies.size() - 1 > 10) {
                 base.spawnMineGuy();
@@ -45,21 +45,21 @@ public class DemoBot extends Bot {
             }
         }
     }
-    private void performGuyAction(guy guy) {
+    private void performGuyAction(Guy guy) {
         double angle = getAngleToClosestEnemy(guy);
         if (angle == -1) return;  // hacky way of checking if there were no enemies to attack
 
         guy.setDirection(angle);
         guy.setSpeed(guy.getMaxSpeed() / 2);
 
-        if (guy instanceof infantryGuy) ((infantryGuy) guy).shoot();
+        if (guy instanceof InfantryGuy) ((InfantryGuy) guy).shoot();
     }
-    private double getAngleToClosestEnemy(actor ally) {
+    private double getAngleToClosestEnemy(Actor ally) {
         double closestDistance = Double.MAX_VALUE;
         double angle = -1;
 
-        for (actor enemy : enemies) {
-            if (!(enemy instanceof guy)) continue;
+        for (Actor enemy : enemies) {
+            if (!(enemy instanceof Guy)) continue;
             double dx = enemy.getX() - ally.getX();
             double dy = enemy.getY() - ally.getY();
             double dist = dx * dx + dy * dy;
