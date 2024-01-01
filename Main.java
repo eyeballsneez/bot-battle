@@ -19,16 +19,17 @@ public class Main {
 
         return game;
     }
-
     public static void main(String[] args) {
 
         boolean gameRunning = true;
 
+        int winner = 0;
+
         Game game = startNewGame();
         GameView gameView = null;
 
-        Bot team1Bot = new NathanABot(game.team1Actors, game.team2Actors);
-        Bot team2Bot = new NathanBot(game.team2Actors, game.team1Actors);
+        Bot team1Bot = new NathanBBot(game.team1Actors, game.team2Actors);
+        Bot team2Bot = new NathanABot(game.team2Actors, game.team1Actors);
 
         if (VISUALIZING) {
             gameView = new GameView(game);
@@ -42,12 +43,22 @@ public class Main {
                 team1Bot.tick();
                 team2Bot.tick();
                 game.tick();
+
+                if (game.checkWinner() != 0) {
+                    gameRunning = false;
+                    winner = game.checkWinner();
+                }
             }
         } else {
             while (gameRunning) {
                 team1Bot.tick();
                 team2Bot.tick();
                 game.tick();
+
+                if (game.checkWinner() != 0) {
+                    gameRunning = false;
+                    winner = game.checkWinner();
+                }
 
                 gameView.redraw();
 
@@ -61,6 +72,18 @@ public class Main {
                     e.printStackTrace();
                 }
             }
+        }
+
+        switch (winner) {
+            case 1:
+                System.out.println("Team 1 wins!");
+                break;
+            case 2:
+                System.out.println("Team 2 wins!");
+                break;
+            default:
+                System.out.println("Tie!");
+                break;
         }
     }
 }
