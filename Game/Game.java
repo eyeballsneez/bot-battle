@@ -51,4 +51,20 @@ public class Game {
         addTeam1Queue.clear();
         addTeam2Queue.clear();
     }
+
+    // 0 for still playing, 1 for team 1 wins, 2 for team 2 wins, -1 for tie
+    public int checkWinner() {
+        Base team1Base = (Base) team1Actors.get(0);
+        Base team2Base = (Base) team2Actors.get(0);
+
+        if (team1Base.getHp() <= 0 && team2Base.getHp() <= 0) {
+            return -1;
+        } else if (team1Base.getHp() <= 0) {
+            return 2;
+        } else if (team2Base.getHp() <= 0) {
+            return 1;
+        }
+
+        return 0;
+    }
 }

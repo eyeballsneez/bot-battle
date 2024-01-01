@@ -3,7 +3,7 @@ package Game;
 import java.lang.Math;
 import java.util.ArrayList;
 
-public abstract class Guy extends Actor {
+public abstract class Guy extends Actor implements Damageable {
     protected double direction;
     private double speed;
     private double maxSpeed;
@@ -61,6 +61,7 @@ public abstract class Guy extends Actor {
 
     }
 
+    @Override
     public void damage(double dmg){
         hp -= dmg;
         if (hp <= 0) {
@@ -78,9 +79,11 @@ public abstract class Guy extends Actor {
         }
     }
 
+    @Override
     public double getHp() {
         return hp;
     }
+    @Override
     public double getMaxHp() {
         return maxHp;
     }

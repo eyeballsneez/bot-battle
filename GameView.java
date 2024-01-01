@@ -50,6 +50,8 @@ public class GameView extends PApplet {
 
         strokeWeight(1);
         ellipse(x, y, 60, 60);
+
+        drawHealthBar(base, x, y + 60);
         int money = base.getMoney();
         textAlign(CENTER);
         fill(0);
@@ -65,6 +67,7 @@ public class GameView extends PApplet {
         float x = (float) guy.getX();
         float y = (float) guy.getY();
 
+
         strokeWeight(0);
         if (guy instanceof MinerGuy){
             rect((float) (x - guy.getSize() / 2), (float) (y - guy.getSize() / 2), (float) guy.getSize(), (float) guy.getSize(), (float) guy.getDirection());
@@ -72,12 +75,8 @@ public class GameView extends PApplet {
             ellipse(x, y, (float) guy.getSize(), (float) guy.getSize());
         }
 
-        fill(color(255, 0, 0));
-        int halfWidth = 15;
-        int thickness = 5;
-        rect(x - halfWidth, y + 25, 2 * halfWidth, thickness);
-        fill(color(0, 255, 0));
-        rect(x - halfWidth, y + 25, (2 * halfWidth) * (float) (guy.getHp() / guy.getMaxHp()), thickness);
+        drawHealthBar(guy, x, y + 25);
+
         strokeWeight(2);
         line(x, y,  ((float) (x+(Math.cos(guy.getDirection())*(guy.getSize()/2)))), ((float) (y+(Math.sin(guy.getDirection())*(guy.getSize()/2)))));
         strokeWeight(0);
@@ -90,6 +89,15 @@ public class GameView extends PApplet {
         }
 
         ellipse((float) projectile.getX(), (float) projectile.getY(), (float) projectile.getSize(), (float) projectile.getSize());
+    }
+
+    private void drawHealthBar(Damageable obj, float x, float y) {
+        fill(color(255, 0, 0));
+        int halfWidth = (int) (Math.log10(obj.getMaxHp()) * 20);
+        int thickness = 5;
+        rect(x - halfWidth, y, 2 * halfWidth, thickness);
+        fill(color(0, 255, 0));
+        rect(x - halfWidth, y, (2 * halfWidth) * (float) (obj.getHp() / obj.getMaxHp()), thickness);
     }
 
     public void mouseWheel(MouseEvent event) {

@@ -25,13 +25,11 @@ public class Projectile extends Actor {
 
         for (int i = 0; i < enemies.size(); i++) {
             Actor enemy = enemies.get(i);
-            if (enemy instanceof Guy) {
-                Guy enemyGuy = (Guy) enemy;
-
+            if (enemy instanceof Damageable obj) {
                 double dist = Math.sqrt((y - enemy.getY()) * (y - enemy.getY()) + (x - enemy.getX()) * (x - enemy.getX()));
 
-                if (dist < (size + enemyGuy.getSize())/2) {
-                    enemyGuy.damage(dmg);
+                if (dist < (size + obj.getSize())/2) {
+                    obj.damage(dmg);
                     game.remove(this);
                 }
             }
