@@ -28,7 +28,7 @@ public class Main {
         Game game = startNewGame();
         GameView gameView = null;
 
-        Bot team1Bot = new NathanABot(game.team1Actors, game.team2Actors, game);
+        Bot team1Bot = new NathanBBot(game.team1Actors, game.team2Actors, game);
         Bot team2Bot = new NathanBot(game.team2Actors, game.team1Actors, game);
 
         if (VISUALIZING) {
@@ -39,7 +39,11 @@ public class Main {
         final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 
         if (!VISUALIZING) {
+            System.out.println("Started Game");
+            int tick = 0;
+
             while (gameRunning) {
+                tick++;
                 team1Bot.tick();
                 team2Bot.tick();
                 game.tick();
@@ -47,6 +51,10 @@ public class Main {
                 if (game.checkWinner() != 0) {
                     gameRunning = false;
                     winner = game.checkWinner();
+                }
+
+                if (tick % 1000 == 0) {
+                    System.out.println("Running Simulation...");
                 }
             }
         } else {
