@@ -1,14 +1,11 @@
 package Bots;
-
-import Game.Actor;
-import Game.Base;
-import Game.Guy;
+import Game.*;
 
 import java.util.ArrayList;
 
 public class DummyBot extends Bot {
-    public DummyBot(ArrayList<Actor> allies, ArrayList<Actor> enemies) {
-        super(allies, enemies);
+    public DummyBot(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
+        super(allies, enemies, game);
     }
 
     @Override

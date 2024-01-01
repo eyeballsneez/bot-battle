@@ -7,13 +7,12 @@ import Game.*;
 public class DemoBot extends Bot {
     /*  Bots are exposed an ArrayList of allies and an ArrayList of enemies  */
     /*  Your constructor should call super as follows:   */
-    public DemoBot(ArrayList<Actor> allies, ArrayList<Actor> enemies) {
-        super(allies, enemies);
+    public DemoBot(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
+        super(allies, enemies, game);
     }
 
     /*  AVAILABLE METHODS   */
     /*  actor.getX() and Game.actor.getY()  - returns the x and y coordinates of the Game.actor
-    /*  base.invest(int amount)             - removes amount from your base's money, but increases your income by amount / 100
     /*  base.spawnInfantryGuy()             - spawns an infantryGuy at the location of your base, if your base has enough money
     /*  guy.setDirection(double direction)  - points the guy in the desired direction
                                                 (in radians)

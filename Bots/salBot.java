@@ -1,15 +1,12 @@
 package Bots;
 
-
-import Game.Actor;
-import Game.Base;
-import Game.Guy;
+import Game.*;
 
 import java.util.ArrayList;
 
 public class salBot extends Bot {
-    public salBot(ArrayList<Actor> allies, ArrayList<Actor> enemies) {
-        super(allies, enemies);
+    public salBot(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
+        super(allies, enemies, game);
     }
 
     int income;

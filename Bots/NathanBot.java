@@ -11,8 +11,8 @@ public class NathanBot extends Bot {
     int minerCount, infantryCount, income;
     int time;
 
-    public NathanBot(ArrayList<Actor> allies, ArrayList<Actor> enemies) {
-        super(allies, enemies);
+    public NathanBot(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
+        super(allies, enemies, game);
 
         time = 0;
 
@@ -234,6 +234,9 @@ public class NathanBot extends Bot {
 
         double predictedDx = t * evx + dx;
         double predictedDy = t * evy + dy;
+
+        predictedDx = Math.max(game.getX1Boundary(), Math.min(predictedDx, game.getX2Boundary()));
+        predictedDy = Math.max(game.getY1Boundary(), Math.min(predictedDy, game.getY2Boundary()));
 
         return Math.atan2(predictedDy, predictedDx);
     }

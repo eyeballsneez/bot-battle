@@ -28,8 +28,8 @@ public class Main {
         Game game = startNewGame();
         GameView gameView = null;
 
-        Bot team1Bot = new NathanBBot(game.team1Actors, game.team2Actors);
-        Bot team2Bot = new NathanABot(game.team2Actors, game.team1Actors);
+        Bot team1Bot = new NathanABot(game.team1Actors, game.team2Actors, game);
+        Bot team2Bot = new NathanBot(game.team2Actors, game.team1Actors, game);
 
         if (VISUALIZING) {
             gameView = new GameView(game);
