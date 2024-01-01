@@ -9,7 +9,7 @@ public class Base extends Actor implements Damageable {
 
     public static final int size = 60;
 
-    public static final double maxHp = 5000;
+    public static final double maxHp = 500;
     private int money;
 
     private double hp;
