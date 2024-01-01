@@ -235,8 +235,10 @@ public class NathanBot extends Bot {
         double predictedDx = t * evx + dx;
         double predictedDy = t * evy + dy;
 
-        predictedDx = Math.max(game.getX1Boundary(), Math.min(predictedDx, game.getX2Boundary()));
-        predictedDy = Math.max(game.getY1Boundary(), Math.min(predictedDy, game.getY2Boundary()));
+        //predictedDx = Math.max(predictedDx, game.getX1Boundary());
+        //predictedDx = Math.min(predictedDx, game.getX2Boundary());
+        //predictedDy = Math.max(predictedDy, game.getY1Boundary());
+        //predictedDy = Math.min(predictedDy, game.getY2Boundary());
 
         return Math.atan2(predictedDy, predictedDx);
     }
