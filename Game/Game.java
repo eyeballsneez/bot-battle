@@ -9,6 +9,11 @@ public class Game {
     ArrayList<Actor> addTeam2Queue;
     ArrayList<Actor> removeQueue;
 
+    private final int x1Boundary = 0;
+    private final int x2Boundary = 3200;
+    private final int y1Boundary = 0;
+    private final int y2Boundary = 3200;
+
     public Game() {
         team1Actors = new ArrayList<>();
         team2Actors = new ArrayList<>();
@@ -66,5 +71,21 @@ public class Game {
         }
 
         return 0;
+    }
+
+    public int getX1Boundary() {
+        return x1Boundary;
+    }
+
+    public int getX2Boundary() {
+        return x2Boundary;
+    }
+
+    public int getY1Boundary() {
+        return y1Boundary;
+    }
+
+    public int getY2Boundary() {
+        return y2Boundary;
     }
 }

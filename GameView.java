@@ -35,7 +35,7 @@ public class GameView extends PApplet {
     private void drawBorder() {
         stroke(0);
         fill(255);
-        rect(0, 0, 3200, 3200);
+        rect(game.getX1Boundary(), game.getY1Boundary(), game.getX2Boundary(), game.getY2Boundary());
     }
 
     private void drawBase(Base base, int team) {

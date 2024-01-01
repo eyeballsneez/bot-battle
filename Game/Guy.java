@@ -29,10 +29,10 @@ public abstract class Guy extends Actor implements Damageable {
         x += Math.cos(direction) * speed;
         y += Math.sin(direction) * speed;
 
-        x = Math.max(x, 0);
-        x = Math.min(x, 3200);
-        y = Math.max(y, 0);
-        y = Math.min(y, 3200);
+        x = Math.max(x, game.getX1Boundary());
+        x = Math.min(x, game.getX2Boundary());
+        y = Math.max(y, game.getY1Boundary());
+        y = Math.min(y, game.getY2Boundary());
 
         for (int i = 0; i < allies.size(); i++) {
             Actor ally = allies.get(i);

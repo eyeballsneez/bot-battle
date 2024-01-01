@@ -67,11 +67,11 @@ public class NathanBot extends Bot {
     }
     private void performBaseAction(Base base) {
         if (minerCount < 6 || income < infantryCount * 600) {
-            if (base.getMoney() >= 500) {
+            if (base.getMoney() >= Base.minerCost) {
                 base.spawnMineGuy();
             }
         } else {
-            for (int i = 0; i < base.getMoney() / 150 + 1; i++) {
+            for (int i = 0; i < base.getMoney() / Base.infantryCost + 1; i++) {
                 base.spawnInfantryGuy();
             }
         }
