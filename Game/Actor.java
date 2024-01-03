@@ -34,6 +34,6 @@ public abstract class Actor {
     public double distance(double x, double y) {
         double dx = this.x - x;
         double dy = this.y - y;
-        return dx * dx + dy * dy;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 }
