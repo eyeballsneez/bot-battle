@@ -5,14 +5,14 @@ import Game.*;
 import java.util.ArrayList;
 
 // Create a new bot class by extending the Bot class
-public class NathanABot extends Bot {
+public class NathanBBot extends Bot {
     /*  Bots are exposed an ArrayList of allies and an ArrayList of enemies  */
     /*  Your constructor should call super as follows:   */
 
     int minerCount, infantryCount, income;
     int time;
 
-    public NathanABot(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
+    public NathanBBot(ArrayList<Actor> allies, ArrayList<Actor> enemies, Game game) {
         super(allies, enemies, game);
 
         time = 0;
@@ -67,12 +67,12 @@ public class NathanABot extends Bot {
         }
     }
     private void performBaseAction(Base base) {
-        if (minerCount < 6 || income < infantryCount * 600) {
-            if (base.getMoney() >= Base.minerCost) {
+        if (minerCount < 6 || income < infantryCount * 300) {
+            if (base.getMoney() >= 500) {
                 base.spawnMineGuy();
             }
         } else {
-            for (int i = 0; i < base.getMoney() / Base.infantryCost + 1; i++) {
+            for (int i = 0; i < base.getMoney() / 150 + 1; i++) {
                 base.spawnInfantryGuy();
             }
         }

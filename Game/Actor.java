@@ -26,4 +26,14 @@ public abstract class Actor {
     }
 
     public abstract void tick();
+
+    public double distance(Actor other) {
+        return distance(other.getX(), other.getY());
+    }
+
+    public double distance(double x, double y) {
+        double dx = this.x - x;
+        double dy = this.y - y;
+        return dx * dx + dy * dy;
+    }
 }

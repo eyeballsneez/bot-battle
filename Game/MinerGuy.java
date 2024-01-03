@@ -10,22 +10,20 @@ public class MinerGuy extends Guy {
 
     public int getIncome() {
         Base base = (Base) allies.get(0);
-        double dist = Math.sqrt((y - base.getY()) * (y - base.getY()) + (x - base.getX()) * (x - base.getX()));
-        for (int i = 0; i < allies.size(); i++) {
-            Actor ally = allies.get(i);
+        double dist = distance(base);
+
+        for (Actor ally : allies) {
             if (ally instanceof MinerGuy && ally != this) {
-                double disttemp = Math.sqrt((y - ally.getY()) * (y - ally.getY()) + (x - ally.getX()) * (x - ally.getX()));
-                if (disttemp < dist){
-                    dist = disttemp;
+                double distTemp = distance(ally);
+
+                if (distTemp < dist) {
+                    dist = distTemp;
                 }
             }
         }
 
-        if (dist > 400) {
-            return 1;
-        } else {
-            return 0;
-        }
+        if (dist > 400) return 1;
+        else return 0;
     }
 
     public void tick() {
