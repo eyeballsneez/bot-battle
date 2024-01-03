@@ -13,7 +13,7 @@ public class MinerGuy extends Guy {
         double dist = Math.sqrt((y - base.getY()) * (y - base.getY()) + (x - base.getX()) * (x - base.getX()));
         for (int i = 0; i < allies.size(); i++) {
             Actor ally = allies.get(i);
-            if (ally instanceof MinerGuy) {
+            if (ally instanceof MinerGuy && ally != this) {
                 double disttemp = Math.sqrt((y - ally.getY()) * (y - ally.getY()) + (x - ally.getX()) * (x - ally.getX()));
                 if (disttemp < dist){
                     dist = disttemp;
@@ -21,7 +21,7 @@ public class MinerGuy extends Guy {
             }
         }
 
-        return (int) Math.floor(dist / 5000);
+        return (int) Math.floor(dist / 400);
     }
 
     public void tick() {
