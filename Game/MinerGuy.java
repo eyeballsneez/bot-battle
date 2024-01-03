@@ -21,7 +21,11 @@ public class MinerGuy extends Guy {
             }
         }
 
-        return (int) Math.floor(dist / 400);
+        if (dist > 400) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public void tick() {
